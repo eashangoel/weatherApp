@@ -1,0 +1,19 @@
+.weatherDisplay {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  height: 20vh;
+  background-color: rgb(244, 41, 244);
+  border-radius: 25px;
+  margin-inline: auto;
+}
+.searchbar {
+  width: 40%;
+  background-color: aqua;
+  margin-inline: auto;
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+}
