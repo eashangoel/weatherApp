@@ -10,11 +10,16 @@ async function getWeather(loc) {
   } else {
     let responseData = await response.json();
     sendPrint(responseData);
+    showIcon(weatherIcon, responseData.weather[0].icon);
   }
+}
+function showIcon(weatherIcon, iconID) {
+  weatherIcon.src = "http://openweathermap.org/img/wn/" + iconID + "@4x.png";
 }
 function showError(txt) {
   console.log(txt);
-  labels[0].textContent = "Couldn't find the entered location";
+  labels[0].textContent = "Not found";
+  weatherIcon.src = "./error.png";
   for (let i = 1; i < labels.length; i++) {
     labels[i].textContent = "";
   }
@@ -34,13 +39,14 @@ async function sendPrint(responseData) {
   labels[0].textContent = responseData.name;
   labels[1].textContent = responseData.weather[0].main;
   labels[2].textContent = responseData.weather[0].description;
-  labels[3].textContent = responseData.main.humidity;
-  labels[4].textContent = responseData.main.pressure;
-  labels[5].textContent = responseData.main.temp;
+  labels[3].textContent = (responseData.main.temp - 273.15).toFixed(2) + "C";
+  labels[4].textContent = "Humidity: " + responseData.main.humidity;
+  labels[5].textContent = "Pressure: " + responseData.main.pressure;
 }
 
 let labels = document.getElementsByClassName("display");
 let input = document.getElementById("location");
+let weatherIcon = document.getElementById("weather-icon");
 input.addEventListener("keypress", function (event) {
   if (event.key === "Enter") {
     event.preventDefault();
@@ -49,16 +55,18 @@ input.addEventListener("keypress", function (event) {
 });
 
 let ctfbutton = document.getElementById("ctf");
-let toggleCount = "f";
+let toggleCount = "c";
 ctfbutton.addEventListener("click", () => {
   if (toggleCount === "f") {
-    labels[5].textContent = fToC(labels[5].textContent).toFixed(2);
+    let myString = labels[3].textContent.replace(/[^\d.-]/g, "");
+    labels[3].textContent = fToC(myString).toFixed(2) + "C";
     toggleCount = "c";
-    ctfbutton.textContent = "to Farenheit";
+    ctfbutton.textContent = "F";
   } else if (toggleCount === "c") {
-    labels[5].textContent = cToF(labels[5].textContent).toFixed(2);
+    let myString = labels[3].textContent.replace(/[^\d.-]/g, "");
+    labels[3].textContent = cToF(myString).toFixed(2) + "F";
     toggleCount = "f";
-    ctfbutton.textContent = "to Celcius";
+    ctfbutton.textContent = "C";
   }
 });
 

@@ -8,19 +8,31 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <div class="header">
+      <h1>Worldwide Weather</h1>
+    </div>
     <div class="searchbar">
       <label for="location">Search location:</label>
       <input type="text" name="location" id="location" />
     </div>
-    <div class="weatherDisplay">
-      <span class="place display"></span>
-      <span class="word display"></span>
-      <span class="desc display"></span>
-      <span class="humidity display"></span>
-      <span class="pressure display"></span>
-      <div class="tempContainer">
-        <span class="temp display"></span>
-        <button id="ctf">to Celcius</button>
+    <div class="showWeather">
+      <img src="" alt="Weather Icon" id="weather-icon" />
+      <div class="innergrid">
+        <span class="place display"></span>
+        <span class="word display"></span>
+        <span class="desc display"></span>
+      </div>
+      <div class="weatherDisplay">
+        <div class="tempContainer">
+          <span class="temp display"></span>
+          <button id="ctf">F</button>
+        </div>
+        <div class="otherContainer">
+          <span class="humidity display"></span>
+          <span class="pressure display"></span>
+        </div>
+        <span class="humidity display"></span>
+        <span class="pressure display"></span>
       </div>
     </div>
     <script src="javascript.js"></script>
